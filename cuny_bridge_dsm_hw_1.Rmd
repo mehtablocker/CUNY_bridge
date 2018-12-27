@@ -1,0 +1,73 @@
+---
+title: "Data Science Math HW 1"
+author: "mehtablocker"
+date: "December 26, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Derivatives
+
+```{r include=F}
+library(Deriv)
+solution1 <- Deriv(function(x) 1-exp(-lambda * x))
+solution2 <- Deriv(function(x) (x-a) / (b-a))
+solution3 <- Deriv(function(x) (x-a)^2 / ((b-a) * (c-a)))
+solution4 <- Deriv(function(x) 1 - (b-x)^2 / ((b-a) * (c-a)))
+```
+
+1 $$ `r deparse(solution1)[2]` $$
+2 $$ `r deparse(solution2)[2]` $$
+3 $$ `r deparse(solution3)[2]` $$
+4 $$ `r deparse(solution4)[2]` $$
+
+## Integrals
+
+```{r include=F}
+myfunc5 <- function(x) 3 * x^3
+solution5 <- integrate(myfunc5, 0, 10)
+library(mosaicCalc)
+```
+
+5 $$ `r as.character(solution5)[1]` $$
+
+6  
+integration by parts using derivative from above  
+u = x, dv = 
+```{r echo=T}
+Deriv(function (x) 1 - exp(-1 * lambda * x))
+```
+
+du = dx, v = 1 - exp(-1 * lambda * x)  
+  
+integral of vdx:
+```{r echo=T}
+antiD(1-exp(-1 * lambda * x) ~ x)
+```
+
+subtract that from vu to get final answer:
+
+$$ e^{-\lambda x} * (\frac{1}{-\lambda} - x) $$
+
+7
+```{r echo = T}
+antiD(1/(b-a) ~ x)
+```
+
+$$ (0.5) / (b-a) $$
+8  
+integration by parts by multiplying the given equation by $\frac{1}{(B^\alpha)^2}$  
+u = $x * \frac{1}{(B^\alpha)^2}$, dv = gamma_pdf
+
+```{r echo=T}
+Deriv(function (x) x * 1/(B^a)^2)
+```
+
+du = $\frac{1}{B^{2\alpha}}$ dx, v = gamma_cdf [because cdf is the integral of pdf]  
+  
+vu - $\int$vdu =  
+  
+gamma_cdf $* x * \frac{1}{(B^\alpha)^2}$ - $\int \frac{1}{B^{2\alpha}} *$ gamma_cdf dx
