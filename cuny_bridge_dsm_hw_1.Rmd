@@ -23,10 +23,17 @@ solution3 <- Deriv(function(x) (x-a)^2 / ((b-a) * (c-a)))
 solution4 <- Deriv(function(x) 1 - (b-x)^2 / ((b-a) * (c-a)))
 ```
 
-1 $$ `r deparse(solution1)[2]` $$
-2 $$ `r deparse(solution2)[2]` $$
-3 $$ `r deparse(solution3)[2]` $$
-4 $$ `r deparse(solution4)[2]` $$
+####Exercise 1
+$$ `r deparse(solution1)[2]` $$
+
+####Exercise 2
+$$ `r deparse(solution2)[2]` $$
+
+####Exercise 3
+$$ `r deparse(solution3)[2]` $$
+
+####Exercise 4
+$$ `r deparse(solution4)[2]` $$
 
   
 ## Integrals
@@ -37,9 +44,10 @@ solution5 <- integrate(myfunc5, 0, 10)
 library(mosaicCalc)
 ```
 
-5 $$ `r as.character(solution5)[1]` $$
+####Exercise 5
+$$ `r as.character(solution5)[1]` $$
 
-6  
+####Exercise 6
 integration by parts using derivative from above  
 u = x, dv = 
 ```{r echo=T}
@@ -57,13 +65,14 @@ subtract that from vu to get final answer:
 
 $$ e^{-\lambda x} * (\frac{1}{-\lambda} - x) $$
 
-7
+####Exercise 7
 ```{r echo = T}
 antiD(1/(b-a) ~ x)
 ```
 
 $$ (0.5) / (b-a) $$
-8  
+
+####Exercise 8
 integration by parts by multiplying the given equation by $\frac{1}{(B^\alpha)^2}$  
 u = $x * \frac{1}{(B^\alpha)^2}$, dv = gamma_pdf
 
@@ -97,24 +106,27 @@ m2l <- function(matr) {
     return(out2)
 }
 ```
-9  
+
+####Exercise 9
 $$ X = `r m2l(X)` $$
 Augment with
 $$ `r m2l(diag(1,3))` $$
 and perform row reduction until left with:
 $$ `r m2l(matrix(c(-4.5, -0.5, 1.75, 5, 1, -2, -1.5, -0.5, 0.75), nrow=3, byrow=T))` $$
 
-10  
+####Exercise 10
 ```{r echo=T}
 det(X)
 ```
 
-11  
+####Exercise 11
 We can find U easily through elimination.
 This results in U=
 $$ `r m2l(matrix(c(1, 2, 3, 0, -3, -8, 0, 0, round(1+1/3,2)), nrow=3, byrow=T))` $$
 And since LU = X that means  
-LU U^-1 L^-1 = X X^-1
+$$ (L)(U)(U^{-1})(L^{-1}) = (X)(X^{-1})$$
+and therefore  
+$$ (U^{-1})(L^{-1}) = (X^{-1})$$
 
 So we can find L:
 ```{r echo=T}
@@ -126,7 +138,7 @@ L <- solve(solve(solve(U), solve(X)))
 L = 
 $$ `r m2l(round(L,2))` $$
 
-12  
+####Exercise 12
 ```{r echo=T}
 solution12 <- round(X %*% solve(X))
 ```
