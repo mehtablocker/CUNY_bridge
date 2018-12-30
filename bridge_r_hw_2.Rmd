@@ -1,0 +1,74 @@
+---
+title: "Bridge R HW 2"
+author: "mehtablocker"
+date: "December 30, 2018"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercise 1
+
+```{r exercise_1}
+require(dplyr, quietly = T, warn.conflicts = F)
+
+carprice_df <- read.csv('https://raw.githubusercontent.com/mehtablocker/CUNY_bridge/master/carprice.csv')
+carprice_df %>% summary()
+carprice_df$Price %>% mean(); carprice_df$Price %>% median()
+carprice_df$MPG.highway %>% mean(); carprice_df$MPG.highway %>% median()
+```
+
+## Exercise 2
+
+```{r exercise_2}
+carprice_filt_df <- carprice_df %>% sample_frac(0.5)
+```
+
+## Exercise 3
+
+```{r exercise_3}
+carprice_filt_df <- carprice_filt_df %>% 
+  rename(id = 1, 
+         type = Type,
+         min_price = Min.Price,
+         price = Price,
+         max_price = Max.Price,
+         range_price = Range.Price,
+         rough_range = RoughRange,
+         gpm_100 = gpm100,
+         mpg_city = MPG.city,
+         mpg_highway = MPG.highway)
+```
+
+## Exercise 4
+
+```{r exercise_4}
+carprice_filt_df %>% summary()
+carprice_filt_df$price %>% mean(); carprice_filt_df$price %>% median()
+carprice_filt_df$mpg_highway %>% mean(); carprice_filt_df$mpg_highway %>% median()
+```
+
+## Exercise 5
+
+```{r exercise_5}
+carprice_filt_df <- carprice_filt_df %>% 
+  mutate(type = as.character(type),
+         type = ifelse(type=="Sporty", "sporty", 
+                       ifelse(type=="Small", "small", 
+                              ifelse(type=="Van", "van", type))))
+```
+
+## Exercise 6
+
+```{r exercise_6, results='asis'}
+knitr::kable(carprice_filt_df)
+```
+
+## Exercise 7
+
+This was done in Step One!
