@@ -1,0 +1,119 @@
+---
+title: "Bridge Data Science Math HW 2"
+author: "mehtablocker"
+date: "December 30, 2018"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Problem 1
+
+(a) 0/36
+(b) 4/36
+(c) 1/36
+
+## Problem 2
+
+```{r problem_2}
+
+## (a)
+1 - (0.25 + 0.15 + 0.28)
+
+## (b)
+0.32 + 0.25
+
+## (c)
+0.25 + 0.15 + 0.28
+
+## (d)
+0.32 * 0.32 ### Assuming independence
+
+## (e)
+0.68 * 0.68 ### Assuming independence
+
+## (f)
+### The assumption of independence is almost certainly not robust. There is very likely some dependence between two family members missing school. (i.e., more likely to get sick at the same time, more likely to go on vacation at the same time, etc.) To correct for this we'd need to know the conditional probability P(one kid misses school | sibling misses school)
+
+```
+
+## Problem 3
+
+```{r problem_3}
+
+## (a)
+### No, a person could be both.
+
+## (b)
+0.2099 + 0.0230
+
+## (c)
+0.2099 / (0.2099 + 0.3123 + 0.2410 + 0.0817 + 0.0289)
+
+## (d)
+0.0230 / (0.0230 + 0.0364 + 0.0427 + 0.0192 + 0.0050)
+
+## (e)
+### No, we can see from the previous three answers that the probability of being in excellent health changes when conditioned on having (or not having) health insurance.
+
+```
+
+## Problem 4
+
+```{r problem_4}
+
+0.53 * 0.37 / ( (1 - 0.53) * 0.44 + 0.53 * 0.37 )
+
+```
+
+## Problem 5
+
+```{r problem_5}
+
+## (a)
+(13 + 15) / (13 + 15 + 59 + 8) * 59 / (27 + 59 + 8)
+
+## (b)
+(13 + 59) / (13 + 15 + 59 + 8) * (12 + 15) / (12 + 15 + 59 + 8)
+
+## (c)
+(13 + 59) / (13 + 15 + 59 + 8) * (13 + 15) / (13 + 15 + 59 + 8)
+
+## (d)
+### Because 27 books out of 94 is not substantially different than 28 books out of 95.
+
+```
+
+## Problem 6
+
+```{r problem_6}
+
+## (a)
+(36 / 52 * -2) + (12 / 52 * 1) + (3 / 52 * 3) + (1 / 52 * 23)
+
+## (b)
+### No, his expected value is negative. In the long run he stands to lose about $0.54 per game.
+
+```
+
+## Problem 7
+
+```{r problem_7}
+
+## (a)
+48 + 2 * 3   ### mean
+sqrt(1 + 0.0625 * 3)   ### sd
+
+## (b)
+48 - 2   ### mean
+sqrt(1 + 0.0625)   ### sd
+
+## (c)
+### Because X - Y can also be thought of as X + Y * -1.  In other words, "flipping" Y's distribution does not change its spread.
+
+```
