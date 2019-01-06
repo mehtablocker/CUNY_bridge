@@ -6,7 +6,7 @@ SELECT DISTINCT engines FROM planes;
 
 SELECT * FROM (SELECT engines AS n_engines, MAX(seats) AS max_seats FROM planes GROUP BY n_engines) AS p1
 LEFT JOIN planes AS p2
-ON p1.max_seats=p2.seats
+ON p1.max_seats=p2.seats AND p1.n_engines=p2.engines
 ORDER BY n_engines ASC;
 
 #3
