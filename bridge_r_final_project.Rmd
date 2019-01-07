@@ -1,0 +1,85 @@
+---
+title: "Bridge R Final Project"
+subtitle: "An Analysis of Toronto Marijuana Possession Arrest Data"
+author: "mehtablocker"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+###Load and clean the data
+
+```{r load_data}
+require(dplyr, quietly = T, warn.conflicts = F)
+require(ggplot2, quietly = T, warn.conflicts = F)
+
+arrest_df <- read.csv('https://raw.githubusercontent.com/mehtablocker/CUNY_bridge/master/Arrests.csv')
+arrest_df <- arrest_df %>% select(-1)
+## convert "Yes/No" to TRUE/FALSE
+arrest_df$released <- arrest_df$released=="Yes"
+arrest_df$employed <- arrest_df$employed=="Yes"
+arrest_df$citizen <- arrest_df$citizen=="Yes"
+
+```
+
+###Arrests by year
+
+Have possession arrests gone down over the years?
+
+```{r year}
+arrest_df %>% ggplot(aes(year) ) + geom_histogram(bins = 30) + labs(title = "Arrests by Year", x="Year", y="Number of Arrests")
+```
+
+We see a substantial drop between 2001 and 2002. Unfortunately the data is not more recent. I suspect this trend would continue.
+
+###Age
+
+How is age related to arrests?
+
+```{r age}
+arrest_df$age %>% median; arrest_df$age %>% mean
+```
+
+The median age of 21 is lower than I might have thought. The mean is of course higher because the age distribution is skewed to the right (i.e., older), which can be reaffirmed by a simple boxplot:
+
+```{r age_boxplot}
+arrest_df$age %>% boxplot(main="Boxplot of Arrest Age", horizontal=T, xlab="Age")
+```
+
+###Gender
+
+Were males more likely to be arrested than females?
+
+```{r gender}
+arrest_df$sex %>% summary()
+```
+
+That is resounding "YES!"  
+Of course, this in and of itself does not prove causation (i.e., gender bias in arrests) because we don't know if males are in fact more likely to use marijuana than females. But the fact that the ratio here is so high (over 10 to 1) relative to the ratio of men to women in the overall population (around 1 to 1) is definitely a bit fishy.
+
+###Race
+
+What percentage of those arrested were black?
+
+```{r race}
+arrest_df$colour %>% summary()
+summary(arrest_df$colour)/length(arrest_df$colour)
+```
+
+While once again we don't necessarily know the causation, we can note that the percentage of black folks arrested (~25%) is quite a bit higher than the population percentage (recent figures estimate 8 to 9 percent of Toronto is black.)
+
+Here is the percentage by year:
+
+```{r race_year}
+arrest_df %>% group_by(year) %>% summarise(pct_black=mean(colour=="Black")) %>% ggplot(aes(x=year, y=pct_black)) + geom_line() + geom_point() + labs(title="Black Arrest Percentage by Year", x="Year", y="Percentage of Those Arrested Who Were Black")
+```
+
+###Conclusions
+
+This dataset has some interesting information. I wish it were more recent and a bit more detailed (e.g., the current binary labels of "Black/White" for race are absurdly broad.) Perhaps the most interesting statistic is the high proportion of male arrests relative to female.
