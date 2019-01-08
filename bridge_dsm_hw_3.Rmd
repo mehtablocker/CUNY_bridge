@@ -1,0 +1,121 @@
+---
+title: "Bridge Data Science Math HW 3"
+author: "mehtablocker"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercises 1 - 5
+
+#### Exercise 1
+`r round( pnorm(979, mean = 1300, sd = sqrt(40000), lower.tail = F), 4)`
+
+#### Exercise 2
+`r round( pnorm(8340, mean = 11000, sd = sqrt(1960000), lower.tail = F), 4)`
+
+#### Exercise 3
+`r round( pnorm(85, mean = 80, sd = 3, lower.tail = T) - pnorm(83, mean = 80, sd = 3, lower.tail = T), 4)`
+
+#### Exercise 4
+`r round( qnorm(.14, mean = 456, sd = 123, lower.tail = F), 0)`
+
+#### Exercise 5
+`r round( qnorm(c(0.07, 1-0.07), mean = 6.13, sd = 0.06, lower.tail = T), 2)`
+
+## Exercises 6 - 10
+
+#### Exercise 6
+`r round( qnorm(c(0.20, 1-0.45), mean = 78.8, sd = 9.8, lower.tail = T), 0)`
+
+#### Exercise 7
+`r round( qnorm(1-0.45, mean = 21.2, sd = 5.4, lower.tail = T), 1)`
+
+#### Exercise 8
+`r round( pnorm(11, mean = 151*0.09, sd = sqrt(151*0.09*(1-0.09)), lower.tail = T), 4)`
+
+#### Exercise 9
+`r round( pnorm(48.83, mean = 48, sd = 7/sqrt(147), lower.tail = F), 4)`
+
+#### Exercise 10
+`r round( pnorm(93.54, mean = 91, sd = 10/sqrt(68), lower.tail = F), 4)`
+
+## Exercises 11 - 15
+
+#### Exercise 11
+`r round( diff(pnorm(c(540*0.07*0.97, 540*0.07*1.03), mean = 540*0.07, sd = sqrt(0.07*(1-0.07)/540), lower.tail = T)), 4)`
+
+#### Exercise 12
+`r round( pnorm(602*0.23*0.96, mean = 602*0.23, sd = sqrt(0.23*(1-0.23)/602), lower.tail = T) + pnorm(602*0.23*1.04, mean = 602*0.23, sd = sqrt(0.23*(1-0.23)/602), lower.tail = F), 4)`
+
+#### Exercise 13
+`r round( qnorm(c(0.1, 0.9), mean = 3.9, sd = 0.8/sqrt(208), lower.tail = T), 1)`
+
+#### Exercise 14
+`r round( qnorm(c(0.01, 0.99), mean = 16.6, sd = 11/sqrt(7472), lower.tail = T), 1)`
+
+#### Exercise 15
+Step 1: Top right
+
+Step 2: 
+`r round( qt(0.05, df = 26, lower.tail = F), 1)`
+
+## Exercises 16 - 21
+
+#### Exercise 16
+```{r ex_16}
+values <- c(383.6, 347.1, 371.9, 347.6, 325.8, 337)
+n <- length(values)
+df <- n - 1
+ci <- 0.90
+alpha <- (1-ci)/2
+
+## Step 1
+x_bar <- round(mean(values), 2)
+x_bar
+
+## Step 2
+s <- round(sd(values), 2)
+s
+
+## Step 3
+t_score <- round(qt(alpha, df=df, lower.tail = F), 3)
+t_score
+
+## Step 4
+round(x_bar - t_score * (s / sqrt(n)), 2)
+round(x_bar + t_score * (s / sqrt(n)), 2)
+
+```
+
+#### Exercise 17
+```{r ex_17}
+x_bar <- 46.4
+s <- 2.45
+n <- 16
+df <- n - 1
+ci <- 0.80
+alpha <- (1-ci)/2
+
+## Step 1
+t_score <- round(qt(alpha, df=df, lower.tail = F), 3)
+t_score
+
+## Step 2
+round(x_bar - t_score * (s / sqrt(n)), 2)
+round(x_bar + t_score * (s / sqrt(n)), 2)
+
+```
+
+#### Exercise 18
+Assuming the previous study was exhaustive enough to be comfortable using 1.9 as a population sd:  
+`r ceiling(qnorm(0.995)*1.9/0.13)`
+
+#### Exercise 19
+`r ceiling(qnorm(0.995)*1.9/0.13)`
