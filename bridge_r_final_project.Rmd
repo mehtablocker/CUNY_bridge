@@ -36,7 +36,7 @@ Have possession arrests gone down over the years?
 arrest_df %>% ggplot(aes(year) ) + geom_histogram(bins = 30) + labs(title = "Arrests by Year", x="Year", y="Number of Arrests")
 ```
 
-We see a substantial drop between 2001 and 2002. Unfortunately the data is not more recent. I suspect this trend would continue.
+The overall trend is not a steady decline. But we do see a substantial drop between 2001 and 2002. Unfortunately the data is not more recent. I suspect the drops would continue.
 
 ###Age
 
@@ -46,7 +46,7 @@ How is age related to arrests?
 arrest_df$age %>% median; arrest_df$age %>% mean
 ```
 
-The median age of 21 is lower than I might have thought. The mean is of course higher because the age distribution is skewed to the right (i.e., older), which can be reaffirmed by a simple boxplot:
+The median age of 21 is lower than I might have thought. The mean is of course higher than the median because the age distribution is skewed to the right (i.e., older), which can be reaffirmed by a simple boxplot:
 
 ```{r age_boxplot}
 arrest_df$age %>% boxplot(main="Boxplot of Arrest Age", horizontal=T, xlab="Age")
@@ -60,8 +60,8 @@ Were males more likely to be arrested than females?
 arrest_df$sex %>% summary()
 ```
 
-That is resounding "YES!"  
-Of course, this in and of itself does not prove causation (i.e., gender bias in arrests) because we don't know if males are in fact more likely to use marijuana than females. But the fact that the ratio here is so high (over 10 to 1) relative to the ratio of men to women in the overall population (around 1 to 1) is definitely a bit fishy.
+That is a resounding "YES!"  
+Of course, this in and of itself does not prove causation (i.e., gender bias in arrests) because we don't know if males are in fact more likely to use marijuana than females. But the fact that the ratio here is so high (over 10 to 1) relative to the ratio of men to women in the overall population (around 1 to 1) is definitely a bit... interesting.
 
 ###Race
 
@@ -82,4 +82,4 @@ arrest_df %>% group_by(year) %>% summarise(pct_black=mean(colour=="Black")) %>% 
 
 ###Conclusions
 
-This dataset has some interesting information. I wish it were more recent and a bit more detailed (e.g., the current binary labels of "Black/White" for race are absurdly broad.) Perhaps the most interesting statistic is the high proportion of male arrests relative to female.
+This dataset has some interesting information. I wish it were more recent and more specific (e.g., the current binary labels of "Black/White" for race are way too general and could be biasing the proportions.) Perhaps the most interesting statistic is the high ratio of male arrests to female arrests.
