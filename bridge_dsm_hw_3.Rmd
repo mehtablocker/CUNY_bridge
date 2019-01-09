@@ -66,7 +66,7 @@ Step 1: Top right
 Step 2: 
 `r round( qt(0.05, df = 26, lower.tail = F), 1)`
 
-## Exercises 16 - 21
+## Exercises 16 - 18
 
 #### Exercise 16
 ```{r ex_16}
@@ -115,7 +115,37 @@ round(x_bar + t_score * (s / sqrt(n)), 2)
 
 #### Exercise 18
 Assuming the previous study was exhaustive enough to be comfortable using 1.9 as a population sd:  
-`r ceiling(qnorm(0.995)*1.9/0.13)`
+`r ceiling((qnorm(0.995)*1.9/0.13)^2)`
+
+## Exercises 19 - 21
 
 #### Exercise 19
-`r ceiling(qnorm(0.995)*1.9/0.13)`
+`r ceiling((qnorm(0.975)*sqrt(3.61)/0.19)^2)`
+
+#### Exercise 20
+```{r ex_20}
+## Step 1
+x <- 1734
+n <- 2089
+p <- round(1-x/n, 3)
+p
+
+## Step 2
+round(p - qnorm(0.99)*sqrt(p*(1-p)/n), 3)
+round(p + qnorm(0.99)*sqrt(p*(1-p)/n), 3)
+
+```
+
+#### Exercise 21
+```{r ex_21}
+## Step 1
+x <- 156
+n <- 474
+p <- round(x/n, 3)
+p
+
+## Step 2
+round(p - qnorm(0.975)*sqrt(p*(1-p)/n), 3)
+round(p + qnorm(0.975)*sqrt(p*(1-p)/n), 3)
+
+```
